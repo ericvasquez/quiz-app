@@ -1,0 +1,104 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz App</title>
+
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Added a link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+  <div class="jumbotron">
+    <h1 class="text-center">Quiz App</h1>
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-2">
+          <h3 class="card-header">Question</h3>
+          <div class="card-body text-center">
+            <h1 id="question-1">Inside which HTML element do we put the JavaScript?</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-2">
+          <h3 class="card-header">Answer</h3>
+          <div class="card-body text-center">
+            <button id="button-1" class="btn btn-primary btn-choice" value="a">
+              <h1>scripting</h1>
+            </button>
+            <button id="button-2" class="btn btn-primary btn-choice" value="b">
+              <h1>js</h1>
+            </button>
+            <button id="button-3" class="btn btn-primary btn-choice" value="c">
+              <h1>script</h1>
+            </button>
+            <button id="button-4" class="btn btn-primary btn-choice" value="d">
+              <h1>javascript</h1>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-2">
+          <h3 class="card-header">Result</h3>
+          <div class="card-body text-center">
+            <h1 id="result"></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      var lockGame = false;
+      var answer1 = "c";
+
+      $(".btn-choice").on("click", function() {
+
+        // Here this lockGame line prevents the user from changing the option after the game is done.
+        if (lockGame !== true) {
+
+          var userAnswer = $(this).val();
+
+          // If your answer matched the correct answer
+          if (userAnswer === answer1) {
+            $("#result").text("Correct");
+            lockGame = true;
+          }
+
+          // If your answer was incorrect
+          else {
+            $("#result").text("Incorrect");
+            lockGame = true;
+          }
+        }
+
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>
