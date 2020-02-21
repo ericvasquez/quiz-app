@@ -17,7 +17,10 @@
 <body>
 
   <div class="jumbotron">
-    <h1 class="text-center">Quiz App</h1>
+    <h1 class="text-center time"></h1>
+    <div id="main"></div>
+    <h1 class="text-center">Current Score</h1>
+    <h2 id="score" class="text-center">0</h2>
   </div>
 
   <div class="container">
@@ -71,9 +74,25 @@
   <script type="text/javascript">
 
     $(document).ready(function() {
+      var timeEl = document.querySelector(".time");
+      var mainEl = document.getElementById("main");
+      var secondsLeft = 100;
+
+    function setTime() {
+      var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = secondsLeft + " seconds remaining";
+
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+      sendMessage();
+    }
+  }, 1000);
+}setTime();
+
       var lockGame = false;
       var answer1 = "c";
-
+      var score = 0;
       $(".btn-choice").on("click", function() {
 
         // Here this lockGame line prevents the user from changing the option after the game is done.
@@ -84,7 +103,9 @@
           // If your answer matched the correct answer
           if (userAnswer === answer1) {
             $("#result").text("Correct");
+            score++;
             lockGame = true;
+            $("#score").text(score);
           }
 
           // If your answer was incorrect
